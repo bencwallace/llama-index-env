@@ -13,6 +13,8 @@ accelerate = "^0.27.0"
 bitsandbytes = "^0.42.0"
 llama-index = "^0.9.46"
 ipython = "*"
+requests = "^2.31.0"
+pypdf = "^4.0.1"
 
 
 [[tool.poetry.source]]
