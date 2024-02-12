@@ -1,10 +1,12 @@
 services:
   default:
     build: .
+    image: llama-index-env-default
     volumes:
       - .:/workspace
-      - ~/.cache/pypoetry:/root/.cache/pypoetry
-      - ~/.cache/huggingface:/root/.cache/huggingface
+      - type: bind
+        source: ${STORAGE}/.cache
+        target: /root/.cache
     deploy:
       resources:
         reservations:
