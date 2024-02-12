@@ -1,0 +1,36 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
+// https://github.com/microsoft/vscode-dev-containers/tree/master/containers/python-3-anaconda
+{
+	"name": "Python 3 - Anaconda",
+    "dockerComposeFile": "../docker-compose.yaml",
+	"service": "default",
+	"workspaceFolder": "/workspace",
+	// Base docker images we use for devcontainer images are stored in AWS ECR.
+	// In order to download the images from ECR we need to execute a special login
+	// command. This setup assumes that user has profiles configured using the following command
+	// `aws-sso-util configure populate --region us-east-1`
+	// Ref: https://confluence.irobot.com/pages/viewpage.action?pageId=132983707#AWSSSOuserguide-configure_populateConfigureallavailableaccountsandroles
+	// Before opening a remote container user will need to login to AWS using `aws-sso-util login` command
+	// "remoteUser": "vscode",
+    // "mounts": ["source=${localEnv:HOME}/.aws/,target=/home/vscode/.aws,type=bind,consistency=cached",
+    //     "source=${localEnv:HOME}/.ssh/,target=/home/vscode/.ssh,type=bind,consistency=cached",
+	// 	"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind,consistency=cached",
+	// 	"source=${localEnv:HOME}/.netrc,target=/root/.netrc,type=bind,consistency=delegated",
+	// 	"source=/data,target=/data,type=bind,consistency=delegated"
+	// ],
+
+	// Use 'settings' to set *default* container specific settings.json values on container create.
+	// You can edit these settings after create using File > Preferences > Settings > Remote.
+	"runArgs": ["192.168.172.9", "--gpus=all", "--shm-size=8g"],
+
+	// Add the IDs of extensions you want installed when the container is created in the array below.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"matangover.mypy",
+				"ms-python.flake8",
+				"ms-python.python"
+			]
+		}
+	}
+}
